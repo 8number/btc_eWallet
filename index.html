@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klaim Bitcoin Gratis Sekarang!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #111;
+            color: #f1c40f;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #222;
+            color: #f39c12;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .content {
+            margin-top: 50px;
+        }
+        button {
+            background-color: #e67e22;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 22px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #d35400;
+        }
+        .message {
+            font-size: 24px;
+            margin-top: 40px;
+            font-weight: bold;
+            color: #e74c3c;
+            display: none;
+        }
+        .error {
+            font-size: 30px;
+            font-weight: bold;
+            color: red;
+            display: none;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        🚀 KLAIM BITCOIN GRATIS! 🚀
+    </header>
+
+    <div class="content">
+        <h1>⚡ Dapatkan 1 BTC Sekarang! ⚡</h1>
+        <p>Cukup klik tombol di bawah ini untuk langsung klaim Bitcoin ke dompetmu!</p>
+        <button onclick="showPrank()">💰 KLAIM SEKARANG 💰</button>
+        <p class="message" id="prankMessage"></p>
+    </div>
+
+    <div class="error" id="errorScreen">💀 SYSTEM ERROR: VIRUS DETECTED! 💀</div>
+
+    <script>
+    let clickCount = 0;
+
+    const prankMessages = [
+        "Ngapain klik? Ikam tu kaya orang sabar menunggu hujan di padang pasir! Kada ada Bitcoin disini! 🤣",
+        "Hahaha! Bujur jua ikam percaya ada Bitcoin gratis? Kaya urang kada sekolah baimbai! 🤣",
+        "Astaga ikam ni, percaya Bitcoin gratis! Kaya sapi menunggu rambutnya tumbuh! 🐄🤣",
+        "Ikam ni baulah! Tahu-tahu dijebak situs prank, kaya urang baru belajar internet! 😂",
+        "Coba deh pikir, mun Bitcoin ada gratis, kenapa ulun kada kaya raya? 🤑",
+        "Makin diklik kada jua jadi sugih! Kawa kada tulak aja tu handak nyari duit betulan? 😂",
+        "Kaya ikam ni masih nyoba? Udah jelas gak ada apa-apa! 😂",
+        "Coba pikir lagi, mun Bitcoin ada gratis, pasti ulun dah jadi juragan! Mana ada jadi orang miskin kaya begini? 😜",
+        "huma dasar kada kataguran katuju banar mang klik ae kayak sepenasaran inya wan kam ha lagi🤣",
+    ];
+
+    function showPrank() {
+        if (clickCount < prankMessages.length) {
+            document.getElementById('prankMessage').textContent = prankMessages[clickCount];
+            document.getElementById('prankMessage').style.display = 'block';
+        } else {
+            // Setelah semua prank selesai, redirect ke halaman loading
+            window.location.href = "loading.html"; // Ganti dengan URL halaman loading
+        }
+
+        clickCount++;
+    }
+    </script>
+
+</body>
+</html>

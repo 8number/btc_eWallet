@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proses Instalasi... 💀</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #111;
+            color: #00ff00;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 50px;
+            text-transform: uppercase;
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .loading {
+            font-size: 24px;
+            color: #ff4500;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 80%;
+            height: 20px;
+            background-color: #444;
+            margin: 20px auto;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background-color: #00ff00;
+            border-radius: 10px;
+        }
+
+        .console-output {
+            font-size: 16px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            text-align: left;
+            width: 80%;
+            height: 180px;
+            margin: 0 auto;
+            border: 1px solid #00ff00;
+            padding: 10px;
+            overflow-y: scroll;
+            background-color: black;
+            color: red;
+        }
+
+        /* Responsif untuk tampilan di perangkat kecil */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
+
+            .loading {
+                font-size: 18px;
+            }
+
+            .console-output {
+                width: 95%;
+                height: 150px;
+                font-size: 14px;
+            }
+
+            .progress-bar {
+                width: 90%;
+            }
+        }
+
+        /* Animasi notifikasi javascript yang bikin gelisah */
+        @keyframes glitch {
+            0% {
+                text-shadow: 1px 1px 3px rgba(255, 0, 0, 0.7);
+                transform: translate(0, 0);
+            }
+            50% {
+                text-shadow: -1px -1px 3px rgba(255, 0, 0, 0.7);
+                transform: translate(-2px, -2px);
+            }
+            100% {
+                text-shadow: 1px 1px 3px rgba(255, 0, 0, 0.7);
+                transform: translate(0, 0);
+            }
+        }
+
+        .glitch-text {
+            animation: glitch 0.5s infinite linear;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="glitch-text">💀 SYSTEM ERROR: VIRUS DETECTED 💀</h1>
+    <div class="loading">Menginstal virus... Harap tunggu...</div>
+
+    <div class="progress-bar">
+        <div class="progress"></div>
+    </div>
+
+    <div class="console-output" id="consoleOutput">
+        // Mulai instalasi virus...
+        // Menghubungkan ke server remote...
+        // Virus terdeteksi di perangkat Anda...
+        // Menulis file sistem...
+    </div>
+
+    <script>
+        // Output JavaScript aneh untuk kesan sistem dibajak
+        const consoleOutput = document.getElementById("consoleOutput");
+        let consoleMessages = [
+            "// Virus berhasil diinstal.",
+            "// Sistem Anda sekarang berada di bawah kontrol penyusup.",
+            "// Mengakses data pribadi Anda...",
+            "// Modifikasi registry sistem...",
+            "// Proses kompilasi gagal...",
+            "// Virus aktif sepenuhnya!"
+        ];
+
+        let index = 0;
+
+        // Fungsi untuk menambahkan pesan ke console output
+        function addConsoleMessage() {
+            if (index < consoleMessages.length) {
+                consoleOutput.textContent += "\n" + consoleMessages[index];
+                index++;
+                setTimeout(addConsoleMessage, 150); // Pesan muncul lebih cepat
+            } else {
+                // Redirect ke halaman virus setelah semua pesan selesai
+                setTimeout(() => {
+                    window.location.href = "virus.html"; // Redirect ke halaman virus.html
+                }, 2000); // Redirect setelah delay
+            }
+        }
+
+        // Mulai penambahan pesan secara otomatis
+        addConsoleMessage();
+
+        // Progress bar animasi
+        let progressBar = document.querySelector('.progress');
+        let progressWidth = 0;
+
+        function updateProgress() {
+            if (progressWidth < 100) {
+                progressWidth += Math.random() * 10; // Progress berubah acak
+                progressBar.style.width = progressWidth + '%';
+            }
+        }
+
+        setInterval(updateProgress, 100); // Update progress setiap 100ms
+
+        // Efek notifikasi JavaScript yang bikin gelisah
+        setInterval(() => {
+            const glitchText = document.querySelector(".glitch-text");
+            glitchText.style.animation = "glitch 0.5s infinite linear"; // Mengaktifkan efek glitch
+        }, 2000);
+
+        // Menampilkan pesan pop-up berulang setiap beberapa detik
+        setInterval(() => {
+            alert("WARNING: System has been compromised!");
+        }, 5000); // Muncul setiap 5 detik
+    </script>
+
+</body>
+</html>

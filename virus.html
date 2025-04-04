@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Error</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #000;
+            color: #0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .terminal {
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            background-color: #111;
+            border: 3px solid #0f0;
+            margin: 20px auto;
+            padding: 15px;
+            text-align: left;
+            overflow-y: scroll;
+            position: relative;
+        }
+        .output {
+            font-size: 14px;
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+            line-height: 1.4;
+        }
+        .glitch {
+            animation: glitchEffect 0.3s infinite alternate;
+        }
+        @keyframes glitchEffect {
+            0% { text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.5); }
+            100% { text-shadow: -2px -2px 5px rgba(255, 0, 0, 0.5); }
+        }
+        .final-message {
+            font-size: 18px;
+            font-weight: bold;
+            color: red;
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="glitch">System Log</h1>
+    
+    <div class="terminal">
+        <div class="output" id="randomCode">Initializing system breach...</div>
+        <p id="deviceInfo"></p>
+    </div>
+
+    <p class="final-message" id="finalMessage">System Shutdown...</p>
+
+    <script>
+        const codeContainer = document.getElementById("randomCode");
+        const deviceInfoContainer = document.getElementById("deviceInfo");
+        const finalMessage = document.getElementById("finalMessage");
+
+        function getTimestamp() {
+            const now = new Date();
+            return now.toLocaleString("en-US", { hour12: false });
+        }
+
+        function getDeviceInfo() {
+            let os = "Unknown OS";
+            let browser = "Unknown Browser";
+            let userAgent = navigator.userAgent;
+
+            if (/Android/i.test(userAgent)) {
+                os = "Android";
+            } else if (/Windows NT 10.0/i.test(userAgent)) {
+                os = "Windows 10";
+            } else if (/Windows NT 6.1/i.test(userAgent)) {
+                os = "Windows 7";
+            } else if (/Mac OS X/i.test(userAgent)) {
+                os = "macOS";
+            } else if (/Linux/i.test(userAgent)) {
+                os = "Linux";
+            } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
+                os = "iOS";
+            }
+
+            if (/Chrome\/\d+/i.test(userAgent) && !/Edg/i.test(userAgent)) {
+                browser = "Google Chrome";
+            } else if (/Firefox\/\d+/i.test(userAgent)) {
+                browser = "Mozilla Firefox";
+            } else if (/Edg\/\d+/i.test(userAgent)) {
+                browser = "Microsoft Edge";
+            } else if (/Safari\/\d+/i.test(userAgent) && !/Chrome/i.test(userAgent)) {
+                browser = "Safari";
+            } else if (/OPR\/\d+/i.test(userAgent)) {
+                browser = "Opera";
+            }
+
+            return {
+                os: os,
+                browser: browser,
+                resolution: `${screen.width}x${screen.height}`,
+                language: navigator.language
+            };
+        }
+
+        const fakeCodeLines = [
+            `${getTimestamp()} [LOG] Connecting to external server: 162.244.80.235...`,
+            `${getTimestamp()} [SUCCESS] Connection established on port 443`,
+            `${getTimestamp()} [WARNING] Unrecognized access from 203.120.10.45`,
+            `${getTimestamp()} [SYS] Running exploit script: kernel_bypass_v3.1.sh`,
+            `${getTimestamp()} [ERROR] Unauthorized privilege escalation detected`,
+            `${getTimestamp()} [LOG] Accessing user credentials...`, // <-- Setelah ini, tampilkan info perangkat + lokasi
+            `${getTimestamp()} [WARNING] Firewall bypass attempt detected...`,
+            `${getTimestamp()} [SUCCESS] Administrator rights granted`,
+            `${getTimestamp()} [ALERT] Dumping hashed passwords...`,
+            `${getTimestamp()} [SYS] Encrypting data & transmitting to 45.76.98.231...`,
+            `${getTimestamp()} [ERROR] Critical failure! System kernel compromised`,
+            `${getTimestamp()} [LOG] Injecting persistent backdoor...`,
+            `${getTimestamp()} [WARNING] System files being overwritten!`,
+            `${getTimestamp()} [ALERT] Data exfiltration complete. Deleting logs...`,
+            `${getTimestamp()} [ERROR] Kernel panic! System shutting down...`,
+            `${getTimestamp()} [ALERT] SYSTEM OVERRIDE INITIATED!`
+        ];
+
+        let i = 0;
+
+        function showFakeCode() {
+            if (i < fakeCodeLines.length) {
+                codeContainer.innerHTML += "<br>" + fakeCodeLines[i];
+
+                if (fakeCodeLines[i].includes("[LOG] Accessing user credentials")) {
+                    setTimeout(fetchDeviceAndLocation, 1500);
+                }
+
+                i++;
+            } else {
+                setTimeout(() => {
+                    finalMessage.style.display = "block";
+                    setTimeout(() => {
+                        window.location.href = "https://support.google.com/chrome/answer/95617?visit_id=638793748306720962-2280131677&p=ui_security_indicator&rd=1";
+                    }, 2000);
+                }, 1000);
+            }
+        }
+
+        function fetchDeviceAndLocation() {
+            fetch('https://ipinfo.io/json?token=0c2de058d46aa6')
+                .then(response => response.json())
+                .then(data => {
+                    const ip = data.ip;
+                    const location = data.city ? `${data.city}, ` : "";
+                    const region = data.region ? `${data.region}, ` : "";
+                    const country = data.country ? data.country : "";
+
+                    const deviceInfo = getDeviceInfo();
+
+                    deviceInfoContainer.innerHTML =
+                        `[DEVICE] OS: ${deviceInfo.os}, Browser: ${deviceInfo.browser}, Resolusi: ${deviceInfo.resolution}, Bahasa: ${deviceInfo.language}, IP: ${ip}, Lokasi: ${location}${region}${country}`;
+
+                    showNotification();
+                })
+                .catch(error => console.error("Gagal mengambil data lokasi:", error));
+        }
+
+        let codeInterval = setInterval(showFakeCode, 1200);
+
+        function showNotification() {
+            alert("⚠ PERINGATAN! Perangkat Anda dalam bahaya.\n\nIP: " + deviceInfoContainer.innerHTML);
+        }
+    </script>
+
+</body>
+</html>
